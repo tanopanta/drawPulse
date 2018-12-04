@@ -62,20 +62,13 @@ void DrawPulse::addValue(int value) {
 }
 
 
-//　軸の描画
+// 軸の描画
 void DrawPulse::drawGrid() {
-    for (int x = 0; x <= LCD_WIDTH; x += 2) { // Horizontal Line
-        for (int y = 0; y <= LCD_HEIGHT; y += DOTS_DIV) {
-            M5.Lcd.drawPixel(x, y, GREY);
-        }
-        if (LCD_HEIGHT == 240) {
-            M5.Lcd.drawPixel(x, LCD_HEIGHT - 1, GREY);
-        }
+    for (int x = 0; x <= LCD_WIDTH; x += DOTS_DIV) { 
+        M5.Lcd.drawLine(x, 0, x, LCD_HEIGHT, GREY); // Vertical Line
     }
-    for (int x = 0; x <= LCD_WIDTH; x += DOTS_DIV) { // Vertical Line
-        for (int y = 0; y <= LCD_HEIGHT; y += 2) {
-            M5.Lcd.drawPixel(x, y, GREY);
-        }
+    for (int y = 0; y <= LCD_HEIGHT; y += DOTS_DIV) { // Horizontal Line
+        M5.Lcd.drawLine(0, y, LCD_WIDTH, y, GREY);
     }
 }
 
